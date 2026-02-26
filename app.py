@@ -39,7 +39,7 @@ UPLOAD_FOLDER = os.path.join(app.root_path,'media')
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 AWS_ACCESS_KEY="AKIASACRPLYDREMJSDDG"
 AWS_SECRET_KEY="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"
-REGION="us-east-2"
+REGION="us-east-2a"
 BUCKET_NAME="my-cloud-gallery"
 
 dynamodb = boto3.resource('dynamodb', aws_access_key_id=AWS_ACCESS_KEY,
@@ -170,4 +170,4 @@ def search_page():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5001)
+    app.run(debug=True, host="0.0.0.0", port=5000)
