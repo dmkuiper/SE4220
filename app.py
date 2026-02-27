@@ -26,6 +26,7 @@ SOFTWARE.
 from flask import Flask, jsonify, abort, request, make_response, url_for
 from flask import render_template, redirect, session
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
 import os
 import boto3    
 import time
@@ -34,15 +35,22 @@ from boto3.dynamodb.conditions import Key, Attr
 import exifread
 import json
 
+load_dotenv()
+
 app = Flask(__name__, static_url_path="/assets", static_folder="assets")
-app.secret_key = "7f8d9e2c4a1b6h3k9m5p2q8r1t4v7w3x"  # Secure session key
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
 UPLOAD_FOLDER = os.path.join(app.root_path,'media')
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
-AWS_ACCESS_KEY="AKIASACRPLYDREMJSDDG"
-AWS_SECRET_KEY="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"
-REGION="us-east-2"
-BUCKET_NAME="my-cloud-gallery"
+AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+REGION = os.getenv("AWS_REGION", "us-east-2")
+BUCKET_NAME = os.getenv("BUCKET_NAME", "my-cloud-gallery")
+
+if not app.secret_key:
+    raise RuntimeError("FLASK_SECRET_KEY is not set")
+if not AWS_ACCESS_KEY or not AWS_SECRET_KEY:
+    raise RuntimeError("AWS_ACCESS_KEY/AWS_SECRET_KEY are not set")
 
 dynamodb = boto3.resource('dynamodb', aws_access_key_id=AWS_ACCESS_KEY,
                           aws_secret_access_key=AWS_SECRET_KEY,
