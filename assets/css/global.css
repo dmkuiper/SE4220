@@ -43004,3 +43004,33 @@ fieldset[disabled] .btn-ig-bg {
 .radius-a-circle:after {
   border-radius: 50% !important;
 }
+
+/* Custom gallery sizing */
+.theme-portfolio-item-v2 .cbp-caption-defaultWrap img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fallback 3-up layout if cubeportfolio JS doesn't apply sizing */
+#portfolio-3-col-grid .cbp-item {
+  position: relative !important;
+  width: auto !important;
+  flex: 0 0 calc(33.3333% - 20px);
+  max-width: calc(33.3333% - 20px);
+  margin: 0 !important;
+  float: none;
+  box-sizing: border-box;
+}
+
+#portfolio-3-col-grid:after {
+  content: none;
+}
+
+#portfolio-3-col-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  height: auto !important;
+}

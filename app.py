@@ -34,7 +34,7 @@ from boto3.dynamodb.conditions import Key, Attr
 import exifread
 import json
 
-app = Flask(__name__, static_url_path="")
+app = Flask(__name__, static_url_path="/assets", static_folder="assets")
 app.secret_key = "7f8d9e2c4a1b6h3k9m5p2q8r1t4v7w3x"  # Secure session key
 
 UPLOAD_FOLDER = os.path.join(app.root_path,'media')

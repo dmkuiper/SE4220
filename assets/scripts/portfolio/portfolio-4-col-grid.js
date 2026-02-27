@@ -14,13 +14,13 @@ var Portfolio = function() {
             gridAdjustment: 'responsive',
             mediaQueries: [{
                 width: 1500,
-                cols: 4
+                cols: 3
             }, {
                 width: 1100,
-                cols: 4
+                cols: 3
             }, {
                 width: 800,
-                cols: 4
+                cols: 3
             }, {
                 width: 550,
                 cols: 2
